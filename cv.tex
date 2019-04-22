@@ -1,8 +1,46 @@
+\iffalse
+Curriculum Vitae / Résumé
+Written in LaTeX
+By Jing Li
+\fi
+
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+% Style
+\setmainfont[Path=./fonts/Calibri/,
+  BoldItalicFont=Calibriz.ttf,
+  BoldFont      =Calibrib.ttf,
+  ItalicFont    =Calibrii.ttf]{Calibri.ttf}
+\newfontfamily\DejaVuSans[Path=./fonts/DejaVuSans/,
+  BoldFont      =DejaVuSans-Bold.ttf]{DejaVuSans.ttf}
+\definecolor{highlightblue}{RGB}{0, 112, 192}
+
 \title{CV of Jing Li}
 \author{Jing Li}
-
-\documentclass[]{CV}
+\date{April 2019}
 
 \begin{document}
+
+% Personal Info
+
+\textcolor{highlightblue}{\textbf{\huge Jing Li}}
+
+\renewcommand{\labelitemi}{\DejaVuSans ☺}
+\begin{itemize}
+  \item Schöneberger Straße 7A, 12163 Berlin, Germany
+  \item +49 176 4567 7344
+  \item \href{mailto:thyrlian@gmail.com}{thyrlian@gmail.com}
+  \item StackOverflow: \href{https://stackoverflow.com/users/1083611/jing-li}{1083611} (6k+ Reputation)
+  \item GitHub: \href{https://github.com/thyrlian}{thyrlian}
+\end{itemize}
+
+\textcolor{highlightblue}{\textbf{\huge Professional Experience}}
+
+TODO...
 
 \end{document}
