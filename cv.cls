@@ -44,5 +44,20 @@
 % ================================================== %
 \graphicspath{ {./images/} }
 
+% ================================================== %
+% Macros
+% ================================================== %
 \def\circledtext#1{\textcircled{\resizebox{.5em}{!}{#1}}}
 \def\fancyiconitem#1{\item \circledtext{#1}}
+% ################################################## %
+% Arguments reference
+% #1 - company name
+% #2 - job title
+% #3 - period
+% #4 - company logo
+% #5 - logo height
+% ################################################## %
+\def\richexperienceheadline#1#2#3#4#5{\begin{tabularx}{\textwidth}{l>{\raggedleft\arraybackslash}X}
+  \textbf{#1} & \multirow{2}{*}{\includegraphics[height=#5]{#4}} \\
+  \textcolor{highlightblue}{\textbf{#2}}, #3 & \\
+\end{tabularx}}
