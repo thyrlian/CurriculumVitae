@@ -48,7 +48,7 @@
 % Macros
 % ================================================== %
 \def\circledtext#1{\textcircled{\resizebox{.5em}{!}{#1}}}
-\def\fancyiconitem#1{\item \circledtext{#1}}
+\def\personalinfo#1#2{\noindent\hspace*{\parindent}\vspace{0.4em}\circledtext{#1} {#2} \\}
 % ################################################## %
 % Arguments reference
 % #1 - company name
