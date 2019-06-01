@@ -61,3 +61,14 @@
   \textbf{#1} & \multirow{2}{*}{\includegraphics[height=#5]{#4}} \\
   \textcolor{highlightblue}{\textbf{#2}}, #3 & \\
 \end{tabularx}}
+% ################################################## %
+% Arguments reference
+% #1 - university name
+% #2 - degree
+% #3 - major
+% #4 - period
+% ################################################## %
+\def\educationbackground#1#2#3#4{\begin{tabularx}{\textwidth}{ll>{\raggedleft\arraybackslash}X}
+  \multirow{2}{*}{\faUniversity} & \textbf{#1} & \multirow{2}{*}{#4} \\
+  & {#2}, {#3} &
+\end{tabularx}}
