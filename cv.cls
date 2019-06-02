@@ -34,6 +34,11 @@
 \definecolor{highlightblue}{RGB}{0, 112, 192}
 
 % ================================================== %
+% Dimensions
+% ================================================== %
+\def\textindent{0.4em}
+
+% ================================================== %
 % Title
 % ================================================== %
 \titleformat{\section}[hang]{\bfseries\huge}{}{0em}{\textcolor{highlightblue}}
@@ -101,4 +106,6 @@
   & {#2}, {#3} &
 \end{tabularx}}
 
-\def\educationitem#1{\hspace*{0.4em}\faGraduationCap\ #1}
+\def\educationitem#1{\hspace*{\textindent}\faGraduationCap\ #1}
+
+\def\award#1#2{\hspace*{\textindent}\faTrophy\ #1 \hfill #2}
