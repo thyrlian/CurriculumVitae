@@ -100,3 +100,5 @@
   \multirow{2}{*}{\faUniversity} & \textbf{#1} & \multirow{2}{*}{#4} \\
   & {#2}, {#3} &
 \end{tabularx}}
+
+\def\educationitem#1{\hspace*{0.4em}\faGraduationCap\ #1}
