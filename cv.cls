@@ -66,6 +66,7 @@
 }
 
 % ################################################## %
+% Work experience list
 % Arguments reference
 % #1 - company name
 % #2 - job title
@@ -73,10 +74,20 @@
 % #4 - company logo
 % #5 - logo height
 % ################################################## %
-\def\richexperienceheadline#1#2#3#4#5{\begin{tabularx}{\textwidth}{l>{\raggedleft\arraybackslash}X}
-  \textbf{#1} & \multirow{2}{*}{\includegraphics[height=#5]{#4}} \\
-  \textcolor{highlightblue}{\textbf{#2}}, #3 & \\
-\end{tabularx}}
+\newenvironment{workexperience}[5]
+{
+  \begin{tabularx}{\textwidth}{l>{\raggedleft\arraybackslash}X}
+    \textbf{#1} & \multirow{2}{*}{\includegraphics[height=#5]{#4}} \\
+    \textcolor{highlightblue}{\textbf{#2}}, #3 & \\
+  \end{tabularx}
+  \begin{itemize}
+  \setlength\itemsep{0em}
+}{
+  \end{itemize}
+}
+\newcommand{\workexperienceitem}[1]{
+  \item #1
+}
 
 % ################################################## %
 % Arguments reference
