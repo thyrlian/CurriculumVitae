@@ -48,7 +48,23 @@
 % Macros
 % ================================================== %
 \def\circledtext#1{\textcircled{\resizebox{.5em}{!}{#1}}}
-\def\personalinfo#1#2{\noindent\hspace*{\parindent}\vspace{0.4em}\circledtext{#1} {#2} \\}
+
+% ################################################## %
+% Personal information list
+% ################################################## %
+\newenvironment{personalinfo}
+  {
+    \begin{itemize}
+    \renewcommand{\labelitemi}{}
+    \setlength\itemsep{0em}
+    \setlength\itemindent{-1em}
+  }{
+    \end{itemize}
+  }
+\newcommand{\personalinfoitem}[2]{
+  \item \circledtext{#1} #2
+}
+
 % ################################################## %
 % Arguments reference
 % #1 - company name
@@ -61,6 +77,7 @@
   \textbf{#1} & \multirow{2}{*}{\includegraphics[height=#5]{#4}} \\
   \textcolor{highlightblue}{\textbf{#2}}, #3 & \\
 \end{tabularx}}
+
 % ################################################## %
 % Arguments reference
 % #1 - university name
