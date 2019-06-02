@@ -108,4 +108,4 @@
 
 \def\educationitem#1{\hspace*{\textindent}\faGraduationCap\ #1}
 
-\def\award#1#2{\hspace*{\textindent}\faTrophy\ #1 \hfill #2}
+\def\award#1#2{\parbox{37.3em}{\hspace*{\textindent}\faTrophy\ #1 \hfill #2}}
