@@ -109,3 +109,7 @@
 \def\educationitem#1{\hspace*{\textindent}\faGraduationCap\ #1}
 
 \def\award#1#2{\parbox{37.3em}{\hspace*{\textindent}\faTrophy\ #1 \hfill #2}}
+
+\makeatletter
+  \def\codingskills#1{\faCode\ \@for\skill:=#1\do{\skill, }etc.}
+\makeatother
