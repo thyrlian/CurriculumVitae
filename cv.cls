@@ -158,10 +158,10 @@ By Jing Li
 % Conference talk
 % ---------- Arguments reference ----------
 % #1 - conference name
-% #2 - dates
-% #3 - location
+% #2 - location
+% #3 - dates
 % #4 - link
 % ---------- Usage example ----------
-% \conftalk{DockerCon}{Jun 2014}{San Francisco}{https://www.docker.com/dockercon/}
+% \conftalk{DockerCon}{San Francisco}{Jun 2014}{https://www.docker.com/dockercon/}
 % ################################################## %
 \def\conftalk#1#2#3#4{\faMicrophone\ \href{#4}{#1} \hfill #2 \textbf{·} #3}
