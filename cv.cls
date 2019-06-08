@@ -124,7 +124,7 @@ By Jing Li
   & {#2}, {#3} &
 \end{tabularx}}
 
-\def\educationitem#1{\hspace*{\textindent}\faGraduationCap\ #1}
+\def\educationitem#1{\hspace*{\textindent}\faGraduationCap\space\space\space\space#1}
 
 % ################################################## %
 % Award
@@ -134,14 +134,14 @@ By Jing Li
 % ---------- Usage example ----------
 % \award{Google Developer Expert}{Jan 20xx}
 % ################################################## %
-\def\award#1#2{\parbox{37.3em}{\hspace*{\textindent}\faTrophy\ #1 \hfill #2}}
+\def\award#1#2{\parbox{37.3em}{\hspace*{\textindent}\faTrophy\space#1 \hfill #2}}
 
 % ################################################## %
 % Coding skills
 % ---------- Usage example ----------
 % \codingskills{Fortran}{C}{Java}{Kotlin}{Swift}
 % ################################################## %
-\def\codingskills#1{\faCode\ #1\@ifnextchar\bgroup{\iteratenextskill}{, etc.}}
+\def\codingskills#1{\faCode\space#1\@ifnextchar\bgroup{\iteratenextskill}{, etc.}}
 \def\iteratenextskill#1{, #1\@ifnextchar\bgroup{\iteratenextskill}{, etc.}}
 
 % ################################################## %
@@ -151,7 +151,7 @@ By Jing Li
 % ################################################## %
 \def\splitlanguageproficiency#1{\languageproficiencyargument#1\relax}
 \def\languageproficiencyargument#1/#2\relax{#1 (#2)}
-\def\languageproficiency#1{\faLanguage\ \splitlanguageproficiency{#1}\@ifnextchar\bgroup{\iteratenextlanguage}{}}
+\def\languageproficiency#1{\faLanguage\space\splitlanguageproficiency{#1}\@ifnextchar\bgroup{\iteratenextlanguage}{}}
 \def\iteratenextlanguage#1{, \splitlanguageproficiency{#1}\@ifnextchar\bgroup{\iteratenextlanguage}{}}
 
 % ################################################## %
@@ -164,7 +164,7 @@ By Jing Li
 % ---------- Usage example ----------
 % \conftalk{DockerCon}{San Francisco}{Jun 2014}{https://www.docker.com/dockercon/}
 % ################################################## %
-\def\conftalk#1#2#3#4{\faMicrophone\ \href{#4}{#1} \hfill #2 \textbf{·} #3}
+\def\conftalk#1#2#3#4{\faMicrophone\space\href{#4}{#1} \hfill #2 \textbf{·} #3}
 
 % ################################################## %
 % Publication
@@ -175,7 +175,7 @@ By Jing Li
 % ---------- Usage example ----------
 % \publication{The LaTeX Book}{978-0-8888-1024-0}{https://example.com/}
 % ################################################## %
-\def\publication#1#2#3{\faBook\ \href{#3}{#1} \hfill \textbf{ISBN}: #2}
+\def\publication#1#2#3{\faBook\space\href{#3}{#1} \hfill \textbf{ISBN}: #2}
 
 % ################################################## %
 % Project
@@ -186,4 +186,4 @@ By Jing Li
 % ---------- Usage example ----------
 % \project{The Kotlin Programming Language}{https://github.com/JetBrains/kotlin}{Trending repositories on GitHub of all time}
 % ################################################## %
-\def\project#1#2#3{\faKeyboardO\ \href{#2}{#1}\space\space\space\space(#3)}
+\def\project#1#2#3{\faKeyboardO\space\href{#2}{#1}\space\space\space\space(#3)}
