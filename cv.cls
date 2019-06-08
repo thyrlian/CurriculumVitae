@@ -129,7 +129,7 @@ By Jing Li
 % ################################################## %
 % Award
 % ---------- Arguments reference ----------
-% #1 - Award title
+% #1 - award title
 % #2 - time or period or any other free text
 % ---------- Usage example ----------
 % \award{Google Developer Expert}{Jan 20xx}
