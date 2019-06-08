@@ -111,5 +111,5 @@
 \def\award#1#2{\parbox{37.3em}{\hspace*{\textindent}\faTrophy\ #1 \hfill #2}}
 
 \makeatletter
-  \def\codingskills#1{\faCode\ \@for\skill:=#1\do{\skill, }etc.}
-\makeatother
+\def\codingskills#1{\faCode\ #1\@ifnextchar\bgroup{\iteratenext}{, etc.}}
+\def\iteratenext#1{, #1\@ifnextchar\bgroup{\iteratenext}{, etc.}}
