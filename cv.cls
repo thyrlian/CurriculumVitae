@@ -110,6 +110,10 @@
 
 \def\award#1#2{\parbox{37.3em}{\hspace*{\textindent}\faTrophy\ #1 \hfill #2}}
 
-\makeatletter
-\def\codingskills#1{\faCode\ #1\@ifnextchar\bgroup{\iteratenext}{, etc.}}
-\def\iteratenext#1{, #1\@ifnextchar\bgroup{\iteratenext}{, etc.}}
+\def\codingskills#1{\faCode\ #1\@ifnextchar\bgroup{\iteratenextskill}{, etc.}}
+\def\iteratenextskill#1{, #1\@ifnextchar\bgroup{\iteratenextskill}{, etc.}}
+
+\def\splitlanguageproficiency#1{\languageproficiencyargument#1\relax}
+\def\languageproficiencyargument#1/#2\relax{#1 (#2)}
+\def\languageproficiency#1{\faLanguage\ \splitlanguageproficiency{#1}\@ifnextchar\bgroup{\iteratenextlanguage}{}}
+\def\iteratenextlanguage#1{, \splitlanguageproficiency{#1}\@ifnextchar\bgroup{\iteratenextlanguage}{}}
