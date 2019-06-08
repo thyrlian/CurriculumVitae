@@ -175,4 +175,4 @@ By Jing Li
 % ---------- Usage example ----------
 % \publication{The LaTeX Book}{978-0-8888-1024-0}{https://example.com/}
 % ################################################## %
-\def\publication#1#2#3{\faBook\ \href{#3}{#1} \hfill\textbf{ISBN}: #2}
+\def\publication#1#2#3{\faBook\ \href{#3}{#1} \hfill \textbf{ISBN}: #2}
