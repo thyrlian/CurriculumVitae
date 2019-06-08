@@ -153,3 +153,15 @@ By Jing Li
 \def\languageproficiencyargument#1/#2\relax{#1 (#2)}
 \def\languageproficiency#1{\faLanguage\ \splitlanguageproficiency{#1}\@ifnextchar\bgroup{\iteratenextlanguage}{}}
 \def\iteratenextlanguage#1{, \splitlanguageproficiency{#1}\@ifnextchar\bgroup{\iteratenextlanguage}{}}
+
+% ################################################## %
+% Conference talk
+% ---------- Arguments reference ----------
+% #1 - conference name
+% #2 - dates
+% #3 - location
+% #4 - link
+% ---------- Usage example ----------
+% \conftalk{DockerCon}{Jun 2014}{San Francisco}{https://www.docker.com/dockercon/}
+% ################################################## %
+\def\conftalk#1#2#3#4{\faMicrophone\ \href{#4}{#1} \hfill #2 \textbf{·} #3}
