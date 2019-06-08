@@ -165,3 +165,14 @@ By Jing Li
 % \conftalk{DockerCon}{San Francisco}{Jun 2014}{https://www.docker.com/dockercon/}
 % ################################################## %
 \def\conftalk#1#2#3#4{\faMicrophone\ \href{#4}{#1} \hfill #2 \textbf{·} #3}
+
+% ################################################## %
+% Publication
+% ---------- Arguments reference ----------
+% #1 - Publication
+% #2 - ISBN
+% #3 - link
+% ---------- Usage example ----------
+% \publication{The LaTeX Book}{978-0-8888-1024-0}{https://example.com/}
+% ################################################## %
+\def\publication#1#2#3{\faBook\ \href{#3}{#1} \hfill\textbf{ISBN}: #2}
