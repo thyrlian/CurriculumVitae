@@ -176,3 +176,14 @@ By Jing Li
 % \publication{The LaTeX Book}{978-0-8888-1024-0}{https://example.com/}
 % ################################################## %
 \def\publication#1#2#3{\faBook\ \href{#3}{#1} \hfill \textbf{ISBN}: #2}
+
+% ################################################## %
+% Project
+% ---------- Arguments reference ----------
+% #1 - project
+% #2 - link
+% #3 - note
+% ---------- Usage example ----------
+% \project{The Kotlin Programming Language}{https://github.com/JetBrains/kotlin}{Trending repositories on GitHub of all time}
+% ################################################## %
+\def\project#1#2#3{\faKeyboardO\ \href{#2}{#1}\space\space\space\space(#3)}
