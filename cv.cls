@@ -169,7 +169,7 @@ By Jing Li
 % ################################################## %
 % Publication
 % ---------- Arguments reference ----------
-% #1 - Publication
+% #1 - publication
 % #2 - ISBN
 % #3 - link
 % ---------- Usage example ----------
