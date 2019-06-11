@@ -1,1 +1,3 @@
-# MyCurriculumVitae
+# CurriculumVitae
+
+Résumé template in LaTeX.
