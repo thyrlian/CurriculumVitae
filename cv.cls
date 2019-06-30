@@ -42,6 +42,7 @@ By Jing Li
 % Dimensions
 % ================================================== %
 \def\textindent{0.4em}
+\def\skillslistindent{1.5em}
 
 % ================================================== %
 % Title
@@ -141,8 +142,8 @@ By Jing Li
 % ---------- Usage example ----------
 % \codingskills{Fortran}{C}{Java}{Kotlin}{Swift}
 % ################################################## %
-\def\codingskills#1{\faCode\space#1\@ifnextchar\bgroup{\iteratenextskill}{, etc.}}
-\def\iteratenextskill#1{, #1\@ifnextchar\bgroup{\iteratenextskill}{, etc.}}
+\def\codingskills#1{\noindent\setlength{\leftskip}{\skillslistindent}\faCode\space#1\@ifnextchar\bgroup{\iteratenextskill}{, etc.\par\setlength{\leftskip}{0em}}}
+\def\iteratenextskill#1{, #1\@ifnextchar\bgroup{\iteratenextskill}{, etc.\par\setlength{\leftskip}{0em}}}
 
 % ################################################## %
 % Language proficiency
@@ -151,8 +152,8 @@ By Jing Li
 % ################################################## %
 \def\splitlanguageproficiency#1{\languageproficiencyargument#1\relax}
 \def\languageproficiencyargument#1/#2\relax{#1 (#2)}
-\def\languageproficiency#1{\faLanguage\space\splitlanguageproficiency{#1}\@ifnextchar\bgroup{\iteratenextlanguage}{}}
-\def\iteratenextlanguage#1{, \splitlanguageproficiency{#1}\@ifnextchar\bgroup{\iteratenextlanguage}{}}
+\def\languageproficiency#1{\noindent\setlength{\leftskip}{\skillslistindent}\faLanguage\space\splitlanguageproficiency{#1}\@ifnextchar\bgroup{\iteratenextlanguage}{\par\setlength{\leftskip}{0em}}}
+\def\iteratenextlanguage#1{, \splitlanguageproficiency{#1}\@ifnextchar\bgroup{\iteratenextlanguage}{\par\setlength{\leftskip}{0em}}}
 
 % ################################################## %
 % Conference talk
