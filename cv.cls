@@ -141,7 +141,7 @@ By Jing Li
 % ---------- Usage example ----------
 % \codingskills{Fortran}{C}{Java}{Kotlin}{Swift}
 % ################################################## %
-\def\codingskills#1{\faCode\space#1\@ifnextchar\bgroup{\iteratenextskill}{, etc.}}
+\def\codingskills#1{\faCode\space#1\@ifnextchar\bgroup{\iteratenextskill}{}}
 \def\iteratenextskill#1{, #1\@ifnextchar\bgroup{\iteratenextskill}{, etc.}}
 
 % ################################################## %
