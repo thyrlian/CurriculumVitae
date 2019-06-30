@@ -42,7 +42,8 @@ By Jing Li
 % Dimensions
 % ================================================== %
 \def\textindent{0.4em}
-\def\skillslistindent{1.5em}
+\def\skillslistindent{2em}
+\def\parboxindent{37.3em}
 
 % ================================================== %
 % Title
@@ -135,7 +136,7 @@ By Jing Li
 % ---------- Usage example ----------
 % \award{Google Developer Expert}{Jan 20xx}
 % ################################################## %
-\def\award#1#2{\parbox{37.3em}{\hspace*{\textindent}\faTrophy\space#1 \hfill #2}}
+\def\award#1#2{\parbox{\parboxindent}{\hspace*{\textindent}\faTrophy\space#1 \hfill #2}}
 
 % ################################################## %
 % Coding skills
@@ -165,7 +166,7 @@ By Jing Li
 % ---------- Usage example ----------
 % \conftalk{DockerCon}{San Francisco}{Jun 2014}{https://www.docker.com/dockercon/}
 % ################################################## %
-\def\conftalk#1#2#3#4{\faMicrophone\space\href{#4}{#1} \hfill #2 \textbf{·} #3}
+\def\conftalk#1#2#3#4{\parbox{\parboxindent}{\hspace*{\textindent}\faMicrophone\space\href{#4}{#1} \hfill #2 \textbf{·} #3}}
 
 % ################################################## %
 % Publication
@@ -176,7 +177,7 @@ By Jing Li
 % ---------- Usage example ----------
 % \publication{The LaTeX Book}{978-0-8888-1024-0}{https://example.com/}
 % ################################################## %
-\def\publication#1#2#3{\faBook\space\href{#3}{#1} \hfill \textbf{ISBN}: #2}
+\def\publication#1#2#3{\parbox{\parboxindent}{\hspace*{\textindent}\faBook\space\href{#3}{#1} \hfill \textbf{ISBN}: #2}}
 
 % ################################################## %
 % Project
@@ -187,4 +188,4 @@ By Jing Li
 % ---------- Usage example ----------
 % \project{The Kotlin Programming Language}{https://github.com/JetBrains/kotlin}{Trending repositories on GitHub of all time}
 % ################################################## %
-\def\project#1#2#3{\faKeyboardO\space\href{#2}{#1}\space\space\space\space(#3)}
+\def\project#1#2#3{\parbox{\parboxindent}{\hspace*{\textindent}\faKeyboardO\space\href{#2}{#1}\space\space\space\space(#3)}}
