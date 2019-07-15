@@ -6,6 +6,7 @@ By Jing Li
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{cv}[2019/05/26 CV class]
 \LoadClass[12pt, a4paper]{article}
+\pagenumbering{gobble}
 
 % ================================================== %
 % Packages
