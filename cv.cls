@@ -107,6 +107,7 @@ By Jing Li
   \setlength\itemsep{0em}
 }{
   \end{itemize}
+  \vspace{8pt}
 }
 \newcommand{\workexperienceitem}[1]{
   \item #1
