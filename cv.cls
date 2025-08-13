@@ -9,6 +9,23 @@ By Jing Li
 \pagenumbering{gobble}
 
 % ================================================== %
+% Class options (hyphenation/justification/microtype)
+% ================================================== %
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{family=cv,prefix=cv@}
+
+% hyphenation: on|off
+\DeclareStringOption[on]{hyphenation}
+% justification: justified|raggedright
+\DeclareStringOption[justified]{justification}
+% microtype: true|false
+\DeclareBoolOption[true]{microtype}
+% emergencystretch: length value, e.g., 0em / 1em / 2em
+\DeclareStringOption[0em]{emergencystretch}
+
+\ProcessKeyvalOptions*
+
+% ================================================== %
 % Packages
 % ================================================== %
 \usepackage[utf8]{inputenc}
@@ -17,12 +34,39 @@ By Jing Li
 \usepackage{titlesec}
 \usepackage{fontspec}
 \usepackage{xcolor}
-\usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{array}
 \usepackage{tabularx}
 \usepackage{multirow}
 \usepackage{fontawesome}
+
+% Hyperref & PDF bookmarks
+\usepackage{hyperref}
+\hypersetup{
+  unicode=true % ensure unicode bookmarks
+}
+
+% === Layout switches driven by class options ===
+\RequirePackage{etoolbox}
+
+% hyphenation on/off
+\ifdefstring{\cv@hyphenation}{off}{%
+  \RequirePackage[none]{hyphenat}%
+}{}
+
+% microtype on/off
+\ifcv@microtype
+  \RequirePackage{microtype}%
+\fi
+
+% justification
+\ifdefstring{\cv@justification}{raggedright}{%
+  \RequirePackage{ragged2e}%
+  \RaggedRight
+}{%
+  % justified: keep two-sided justification; avoid big gaps with emergencystretch
+  \emergencystretch=\cv@emergencystretch
+}
 
 % ================================================== %
 % Fonts

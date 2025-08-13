@@ -36,6 +36,9 @@
 *-blx.bib
 *.run.xml
 
+## LaTeX build output
+build/
+
 ## Build tool auxiliary files:
 *.fdb_latexmk
 *.synctex
