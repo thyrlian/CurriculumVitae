@@ -82,6 +82,7 @@ By Jing Li
 % Colors
 % ================================================== %
 \definecolor{highlightblue}{RGB}{0, 112, 192}
+\definecolor{highlightpurple}{RGB}{102, 51, 153}
 
 % ================================================== %
 % Dimensions
@@ -137,8 +138,13 @@ By Jing Li
 % #5 - logo height
 % ---------- Usage example ----------
 % \begin{workexperience}{Hooli}{CEO}{Jan 20xx - Dec 20xx}{company_logo_xxx.png}{0.1in}
-%   \workexperienceitem{Acquired Acme Corporation for $8.8 billion}
-%   \workexperienceitem{Quadrupled the number of monthly active users on mobile platform}
+%   \workexperiencegroup{M\&A}
+%   \workexperienceitem{Acquired Acme Corporation for \$8.8 billion.}   
+%   \workexperiencegroup{People \& Org}
+%   \workexperienceitem{Hired the best engineers in the world.}
+%   \workexperienceitem{Built a world-class engineering team.}
+%   \workexperiencegroup{Product \& Growth}
+%   \\workexperienceitem{Quadrupled monthly active users on mobile.}
 % \end{workexperience}
 % ################################################## %
 \newenvironment{workexperience}[5]
@@ -153,9 +159,15 @@ By Jing Li
   \end{itemize}
   \vspace{8pt}
 }
-\newcommand{\workexperienceitem}[1]{
-  \item #1
+
+% Group headline inside workexperience: bold + accent color, full-width, compact spacing
+\newcommand{\workexperiencegroup}[1]{%
+  \item[]%
+  {\textcolor{highlightpurple}{\textbf{#1}}}%
+  \vspace{2pt}%
 }
+
+\newcommand{\workexperienceitem}[1]{\item #1}
 
 % ################################################## %
 % Education background block
