@@ -14,4 +14,4 @@ You can find the generated [PDF example](https://github.com/thyrlian/CurriculumV
 
 ## License
 
-Copyright (c) 2019-2020 Jing Li. It is released under the [WTFPL](http://www.wtfpl.net/). See the [LICENSE](https://github.com/thyrlian/CurriculumVitae/blob/master/LICENSE) file for details.
+Copyright (c) 2019-2025 Jing Li. It is released under the [WTFPL](http://www.wtfpl.net/). See the [LICENSE](https://github.com/thyrlian/CurriculumVitae/blob/master/LICENSE) file for details.
