@@ -274,10 +274,5 @@ TSWLatexianTemp*
 
 # End of https://www.gitignore.io/api/latex
 
-
-### Fonts ###
-fonts/
-*.ttf
-
 ### macOS ###
 .DS_Store

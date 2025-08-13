@@ -14,4 +14,5 @@ You can find the generated [PDF example](https://github.com/thyrlian/CurriculumV
 
 ## License
 
-Copyright (c) 2019-2025 Jing Li. It is released under the [WTFPL](http://www.wtfpl.net/). See the [LICENSE](https://github.com/thyrlian/CurriculumVitae/blob/master/LICENSE) file for details.
+- Template code: © 2019–2025 Jing Li. It is released under the [WTFPL](http://www.wtfpl.net/). See [LICENSE](./LICENSE) file for details.
+- Fonts: Third-party fonts remain under their own licenses. See [THIRD-PARTY-NOTICES.md](./THIRD-PARTY-NOTICES.md) and the license files inside [`fonts/`](./fonts/).

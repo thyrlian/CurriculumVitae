@@ -71,12 +71,48 @@ By Jing Li
 % ================================================== %
 % Fonts
 % ================================================== %
-\setmainfont[Path=./fonts/Calibri/,
-  BoldItalicFont=Calibriz.ttf,
-  BoldFont      =Calibrib.ttf,
-  ItalicFont    =Calibrii.ttf]{Calibri.ttf}
-\newfontfamily\DejaVuSans[Path=./fonts/DejaVuSans/,
-  BoldFont      =DejaVuSans-Bold.ttf]{DejaVuSans.ttf}
+% We deliberately do NOT use system fonts to keep the template visually consistent.
+
+% Try bundled Noto Sans first
+\IfFileExists{./fonts/NotoSans/NotoSans-Regular.ttf}{
+  \setmainfont[
+    Path           = ./fonts/NotoSans/,
+    UprightFont    = *-Regular,
+    BoldFont       = *-Bold,
+    ItalicFont     = *-Italic,
+    BoldItalicFont = *-BoldItalic
+  ]{NotoSans}
+}{
+  % If Noto Sans is missing, fall back to bundled DejaVu Sans
+  \IfFileExists{./fonts/DejaVuSans/DejaVuSans.ttf}{
+    \setmainfont[
+      Path           = ./fonts/DejaVuSans/,
+      UprightFont    = DejaVuSans.ttf,
+      BoldFont       = DejaVuSans-Bold.ttf,
+      ItalicFont     = DejaVuSans-Oblique.ttf,
+      BoldItalicFont = DejaVuSans-BoldOblique.ttf
+    ]{DejaVuSans}
+  }{
+    % Last resort: warn and use TeX Gyre Heros (commonly available sans)
+    \PackageWarning{cv}{Bundled fonts not found. Falling back to TeX Gyre Heros.}
+    \setmainfont{TeX Gyre Heros}
+  }
+}
+
+% Optional helper family for places where you specifically want DejaVu Sans
+% (kept for backward compatibility with earlier template variants)
+\IfFileExists{./fonts/DejaVuSans/DejaVuSans.ttf}{
+  \newfontfamily\CVDejaVuSans[
+    Path           = ./fonts/DejaVuSans/,
+    UprightFont    = DejaVuSans.ttf,
+    BoldFont       = DejaVuSans-Bold.ttf,
+    ItalicFont     = DejaVuSans-Oblique.ttf,
+    BoldItalicFont = DejaVuSans-BoldOblique.ttf
+  ]{DejaVuSans}
+}{
+  % If not bundled, just alias it to the main font to avoid undefined commands
+  \newfontfamily\CVDejaVuSans{\rmfamily}
+}
 
 % ================================================== %
 % Colors
