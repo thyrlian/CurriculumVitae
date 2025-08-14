@@ -136,6 +136,27 @@ By Jing Li
 \def\parboxindent{37.3em}
 
 % ================================================== %
+% Spacing knobs
+% ================================================== %
+% Generic list line spacing (personal info, etc.)
+\newlength\cvlinesep
+\setlength{\cvlinesep}{0.30em}
+
+% Work-experience bullet line spacing
+\newlength\cvworksep
+\setlength{\cvworksep}{0.35em}
+
+% Group headline extra spacing (within workexperience)
+\newlength\cvgroupbefore
+\setlength{\cvgroupbefore}{0.40em}
+\newlength\cvgroupafter
+\setlength{\cvgroupafter}{0.25em}
+
+% Block-to-block spacing for box-style macros (awards, talks, projects, ...)
+\newlength\cvblocksep
+\setlength{\cvblocksep}{0.40em}
+
+% ================================================== %
 % Title
 % ================================================== %
 \titleformat{\section}[hang]{\bfseries\huge}{}{0em}{\textcolor{highlightblue}}
@@ -148,12 +169,12 @@ By Jing Li
 
 \newlist{cvitemize}{itemize}{1}
 \setlist[cvitemize]{%
-  leftmargin=\textindent,  % align with other blocks using \textindent
+  leftmargin=\textindent,
   labelindent=0pt,
   itemindent=0pt,
   labelsep=0.4em,
   label=\textbullet,
-  itemsep=0pt, topsep=0pt, parsep=0pt, partopsep=0pt
+  itemsep=\cvlinesep, topsep=0pt, parsep=0pt, partopsep=0pt
 }
 
 % ================================================== %
@@ -176,8 +197,7 @@ By Jing Li
 % ################################################## %
 \newenvironment{personalinfo}
   {%
-    % no bullet here; FontAwesome icon acts as the “bullet”
-    \begin{cvitemize}[label={},labelsep=0pt]
+    \begin{cvitemize}[label={},labelsep=0pt,itemsep=\cvlinesep]
     \renewcommand{\labelitemi}{}%
   }
   {\end{cvitemize}}
@@ -213,13 +233,13 @@ By Jing Li
   \end{tabularx}
 
   \settowidth{\@tempdima}{\textbullet}%
-  \addtolength{\@tempdima}{0.4em} % labelsep
+  \addtolength{\@tempdima}{0.4em}% labelsep
 
   \begin{itemize}[
     leftmargin=\dimexpr\textindent+\@tempdima\relax,
     labelindent=0pt,
     labelsep=0.4em,
-    itemsep=0pt, topsep=0pt, parsep=0pt, partopsep=0pt
+    itemsep=\cvworksep, topsep=0pt, parsep=0pt, partopsep=0pt
   ]
 }
 {
@@ -227,11 +247,12 @@ By Jing Li
   \vspace{8pt}
 }
 
-% Group headline inside workexperience: bold + accent color, full-width, compact spacing
+% Group headline inside workexperience: bold + accent color with extra spacing
 \newcommand{\workexperiencegroup}[1]{%
+  \addvspace{\cvgroupbefore}%
   \item[]%
   {\textcolor{highlightpurple}{\textbf{#1}}}%
-  \vspace{2pt}%
+  \addvspace{\cvgroupafter}%
 }
 
 \newcommand{\workexperienceitem}[1]{\item #1}
@@ -251,7 +272,10 @@ By Jing Li
   & {#2}, {#3} &
 \end{tabularx}}
 
-\def\educationitem#1{\hspace*{\textindent}\faGraduationCap\space\space\space\space#1}
+\def\educationitem#1{%
+  \hspace*{\textindent}\faGraduationCap\space\space\space\space#1%
+  \par\vspace{\cvblocksep}%
+}
 
 % ################################################## %
 % Award
@@ -261,7 +285,10 @@ By Jing Li
 % ---------- Usage example ----------
 % \award{Google Developer Expert}{Jan 20xx}
 % ################################################## %
-\def\award#1#2{\parbox{\parboxindent}{\hspace*{\textindent}\faTrophy\space#1 \hfill #2}}
+\def\award#1#2{%
+  \parbox{\parboxindent}{\hspace*{\textindent}\faTrophy\space#1 \hfill #2}%
+  \par\vspace{\cvblocksep}%
+}
 
 % ################################################## %
 % Coding skills
@@ -270,9 +297,9 @@ By Jing Li
 % ################################################## %
 \def\codingskills#1{%
   \par\noindent\hspace*{\textindent}\faCode\space#1%
-  \@ifnextchar\bgroup{\iteratenextskill}{, etc.\par}%
+  \@ifnextchar\bgroup{\iteratenextskill}{, etc.\par\vspace{\cvblocksep}}%
 }
-\def\iteratenextskill#1{, #1\@ifnextchar\bgroup{\iteratenextskill}{, etc.\par}}
+\def\iteratenextskill#1{, #1\@ifnextchar\bgroup{\iteratenextskill}{, etc.\par\vspace{\cvblocksep}}}
 
 % ################################################## %
 % Language proficiency
@@ -283,9 +310,9 @@ By Jing Li
 \def\languageproficiencyargument#1/#2\relax{#1 (#2)}
 \def\languageproficiency#1{%
   \par\noindent\hspace*{\textindent}\faLanguage\space\splitlanguageproficiency{#1}%
-  \@ifnextchar\bgroup{\iteratenextlanguage}{\par}%
+  \@ifnextchar\bgroup{\iteratenextlanguage}{\par\vspace{\cvblocksep}}%
 }
-\def\iteratenextlanguage#1{, \splitlanguageproficiency{#1}\@ifnextchar\bgroup{\iteratenextlanguage}{\par}}
+\def\iteratenextlanguage#1{, \splitlanguageproficiency{#1}\@ifnextchar\bgroup{\iteratenextlanguage}{\par\vspace{\cvblocksep}}}
 
 % ################################################## %
 % Conference talk
@@ -297,7 +324,10 @@ By Jing Li
 % ---------- Usage example ----------
 % \conftalk{DockerCon}{San Francisco}{Jun 2014}{https://www.docker.com/dockercon/}
 % ################################################## %
-\def\conftalk#1#2#3#4{\parbox{\parboxindent}{\hspace*{\textindent}\faMicrophone\space\href{#4}{#1} \hfill #2 \textbf{·} #3}}
+\def\conftalk#1#2#3#4{%
+  \parbox{\parboxindent}{\hspace*{\textindent}\faMicrophone\space\href{#4}{#1} \hfill #2 \textbf{·} #3}%
+  \par\vspace{\cvblocksep}%
+}
 
 % ################################################## %
 % Publication
@@ -308,7 +338,10 @@ By Jing Li
 % ---------- Usage example ----------
 % \publication{The LaTeX Book}{978-0-8888-1024-0}{https://example.com/}
 % ################################################## %
-\def\publication#1#2#3{\parbox{\parboxindent}{\hspace*{\textindent}\faBook\space\href{#3}{#1} \hfill \textbf{ISBN}: #2}}
+\def\publication#1#2#3{%
+  \parbox{\parboxindent}{\hspace*{\textindent}\faBook\space\href{#3}{#1} \hfill \textbf{ISBN}: #2}%
+  \par\vspace{\cvblocksep}%
+}
 
 % ################################################## %
 % Project
@@ -319,4 +352,7 @@ By Jing Li
 % ---------- Usage example ----------
 % \project{The Kotlin Programming Language}{https://github.com/JetBrains/kotlin}{Trending repositories on GitHub of all time}
 % ################################################## %
-\def\project#1#2#3{\parbox{\parboxindent}{\hspace*{\textindent}\faKeyboardO\space\href{#2}{#1}\space\space\space\space(#3)}}
+\def\project#1#2#3{%
+  \parbox{\parboxindent}{\hspace*{\textindent}\faKeyboardO\space\href{#2}{#1}\space\space\space\space(#3)}%
+  \par\vspace{\cvblocksep}%
+}
