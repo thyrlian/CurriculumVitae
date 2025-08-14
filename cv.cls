@@ -133,7 +133,6 @@ By Jing Li
 % Dimensions
 % ================================================== %
 \def\textindent{0.4em}
-\def\skillslistindent{2em}
 \def\parboxindent{37.3em}
 
 % ================================================== %
@@ -141,6 +140,21 @@ By Jing Li
 % ================================================== %
 \titleformat{\section}[hang]{\bfseries\huge}{}{0em}{\textcolor{highlightblue}}
 \titlespacing*{\section}{\parindent}{1em}{0.5em}
+
+% ================================================== %
+% List items (flush to the same left gutter as other blocks)
+% ================================================== %
+\RequirePackage{enumitem}
+
+\newlist{cvitemize}{itemize}{1}
+\setlist[cvitemize]{%
+  leftmargin=\textindent,  % align with other blocks using \textindent
+  labelindent=0pt,
+  itemindent=0pt,
+  labelsep=0.4em,
+  label=\textbullet,
+  itemsep=0pt, topsep=0pt, parsep=0pt, partopsep=0pt
+}
 
 % ================================================== %
 % Others
@@ -161,14 +175,12 @@ By Jing Li
 % \end{personalinfo}
 % ################################################## %
 \newenvironment{personalinfo}
-  {
-    \begin{itemize}
-    \renewcommand{\labelitemi}{}
-    \setlength\itemsep{0em}
-    \setlength\itemindent{-1em}
-  }{
-    \end{itemize}
+  {%
+    % no bullet here; FontAwesome icon acts as the “bullet”
+    \begin{cvitemize}[label={},labelsep=0pt]
+    \renewcommand{\labelitemi}{}%
   }
+  {\end{cvitemize}}
 \newcommand{\personalinfoitem}[2]{
   \item \circledtext{#1} #2
 }
@@ -192,15 +204,25 @@ By Jing Li
 %   \\workexperienceitem{Quadrupled monthly active users on mobile.}
 % \end{workexperience}
 % ################################################## %
+% ===== workexperience: inner list uses the same left gutter =====
 \newenvironment{workexperience}[5]
 {
   \begin{tabularx}{\textwidth}{l>{\raggedleft\arraybackslash}X}
     \textbf{#1} & \multirow{2}{*}{\includegraphics[height=#5]{#4}} \\
     \textcolor{highlightblue}{\textbf{#2}}, #3 & \\
   \end{tabularx}
-  \begin{itemize}
-  \setlength\itemsep{0em}
-}{
+
+  \settowidth{\@tempdima}{\textbullet}%
+  \addtolength{\@tempdima}{0.4em} % labelsep
+
+  \begin{itemize}[
+    leftmargin=\dimexpr\textindent+\@tempdima\relax,
+    labelindent=0pt,
+    labelsep=0.4em,
+    itemsep=0pt, topsep=0pt, parsep=0pt, partopsep=0pt
+  ]
+}
+{
   \end{itemize}
   \vspace{8pt}
 }
@@ -246,8 +268,11 @@ By Jing Li
 % ---------- Usage example ----------
 % \codingskills{Fortran}{C}{Java}{Kotlin}{Swift}
 % ################################################## %
-\def\codingskills#1{\noindent\setlength{\leftskip}{\skillslistindent}\faCode\space#1\@ifnextchar\bgroup{\iteratenextskill}{, etc.\par\setlength{\leftskip}{0em}}}
-\def\iteratenextskill#1{, #1\@ifnextchar\bgroup{\iteratenextskill}{, etc.\par\setlength{\leftskip}{0em}}}
+\def\codingskills#1{%
+  \par\noindent\hspace*{\textindent}\faCode\space#1%
+  \@ifnextchar\bgroup{\iteratenextskill}{, etc.\par}%
+}
+\def\iteratenextskill#1{, #1\@ifnextchar\bgroup{\iteratenextskill}{, etc.\par}}
 
 % ################################################## %
 % Language proficiency
@@ -256,8 +281,11 @@ By Jing Li
 % ################################################## %
 \def\splitlanguageproficiency#1{\languageproficiencyargument#1\relax}
 \def\languageproficiencyargument#1/#2\relax{#1 (#2)}
-\def\languageproficiency#1{\noindent\setlength{\leftskip}{\skillslistindent}\faLanguage\space\splitlanguageproficiency{#1}\@ifnextchar\bgroup{\iteratenextlanguage}{\par\setlength{\leftskip}{0em}}}
-\def\iteratenextlanguage#1{, \splitlanguageproficiency{#1}\@ifnextchar\bgroup{\iteratenextlanguage}{\par\setlength{\leftskip}{0em}}}
+\def\languageproficiency#1{%
+  \par\noindent\hspace*{\textindent}\faLanguage\space\splitlanguageproficiency{#1}%
+  \@ifnextchar\bgroup{\iteratenextlanguage}{\par}%
+}
+\def\iteratenextlanguage#1{, \splitlanguageproficiency{#1}\@ifnextchar\bgroup{\iteratenextlanguage}{\par}}
 
 % ################################################## %
 % Conference talk
