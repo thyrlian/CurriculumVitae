@@ -69,50 +69,59 @@ By Jing Li
 }
 
 % ================================================== %
-% Fonts
+% Fonts (robust multi-location probing + fallback)
 % ================================================== %
-% We deliberately do NOT use system fonts to keep the template visually consistent.
 
-% Try bundled Noto Sans first
-\IfFileExists{./fonts/NotoSans/NotoSans-Regular.ttf}{
+% 1) Try project-local fonts/
+\newcommand*\cv@fontdir{}
+\IfFileExists{fonts/NotoSans/NotoSans-Regular.ttf}{%
+  \def\cv@fontdir{fonts/}%
+}{}
+
+% 2) Try submodule path CurriculumVitae/fonts/
+\ifx\cv@fontdir\@empty
+  \IfFileExists{CurriculumVitae/fonts/NotoSans/NotoSans-Regular.ttf}{%
+    \def\cv@fontdir{CurriculumVitae/fonts/}%
+  }{}
+\fi
+
+% 3) Try class-relative fonts/ (requires currfile)
+\ifx\cv@fontdir\@empty
+  \RequirePackage{currfile}
+  \edef\cv@fontdir{\currfileabsdir fonts/}%
+\fi
+
+% Debug messages in the .log
+\ClassInfo{cv}{Using font dir: \cv@fontdir}
+
+% If still missing, we will fall back later.
+\newif\ifcv@fontsok
+\IfFileExists{\cv@fontdir NotoSans/NotoSans-Regular.ttf}{\cv@fontsoktrue}{\cv@fontsokfalse}
+
+\ifcv@fontsok
+  % Noto Sans (bundled)
   \setmainfont[
-    Path           = ./fonts/NotoSans/,
-    UprightFont    = *-Regular,
-    BoldFont       = *-Bold,
-    ItalicFont     = *-Italic,
-    BoldItalicFont = *-BoldItalic
+    Path=\cv@fontdir NotoSans/,
+    UprightFont     = *-Regular.ttf,
+    BoldFont        = *-Bold.ttf,
+    ItalicFont      = *-Italic.ttf,
+    BoldItalicFont  = *-BoldItalic.ttf
   ]{NotoSans}
-}{
-  % If Noto Sans is missing, fall back to bundled DejaVu Sans
-  \IfFileExists{./fonts/DejaVuSans/DejaVuSans.ttf}{
-    \setmainfont[
-      Path           = ./fonts/DejaVuSans/,
-      UprightFont    = DejaVuSans.ttf,
-      BoldFont       = DejaVuSans-Bold.ttf,
-      ItalicFont     = DejaVuSans-Oblique.ttf,
-      BoldItalicFont = DejaVuSans-BoldOblique.ttf
-    ]{DejaVuSans}
-  }{
-    % Last resort: warn and use TeX Gyre Heros (commonly available sans)
-    \PackageWarning{cv}{Bundled fonts not found. Falling back to TeX Gyre Heros.}
-    \setmainfont{TeX Gyre Heros}
-  }
-}
 
-% Optional helper family for places where you specifically want DejaVu Sans
-% (kept for backward compatibility with earlier template variants)
-\IfFileExists{./fonts/DejaVuSans/DejaVuSans.ttf}{
-  \newfontfamily\CVDejaVuSans[
-    Path           = ./fonts/DejaVuSans/,
-    UprightFont    = DejaVuSans.ttf,
-    BoldFont       = DejaVuSans-Bold.ttf,
-    ItalicFont     = DejaVuSans-Oblique.ttf,
-    BoldItalicFont = DejaVuSans-BoldOblique.ttf
+  % DejaVu Sans (bundled aux family)
+  \newfontfamily\DejaVuSans[
+    Path=\cv@fontdir DejaVuSans/,
+    UprightFont     = DejaVuSans.ttf,
+    BoldFont        = DejaVuSans-Bold.ttf,
+    ItalicFont      = DejaVuSans-Oblique.ttf,
+    BoldItalicFont  = DejaVuSans-BoldOblique.ttf
   ]{DejaVuSans}
-}{
-  % If not bundled, just alias it to the main font to avoid undefined commands
-  \newfontfamily\CVDejaVuSans{\rmfamily}
-}
+\else
+  % Hard fallback so we NEVER hit nullfont
+  \ClassWarning{cv}{Bundled fonts not found at \cv@fontdir. Falling back to TeX Gyre Heros.}
+  \setmainfont{TeX Gyre Heros} % free Helvetica-like, usually in MiKTeX/TeXLive
+  \newfontfamily\DejaVuSans{TeX Gyre Heros}
+\fi
 
 % ================================================== %
 % Colors
