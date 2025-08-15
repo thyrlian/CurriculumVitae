@@ -124,6 +124,38 @@ By Jing Li
 \fi
 
 % ================================================== %
+% Symbols fallback (Noto Sans Symbols for specific Unicode arrows)
+% ================================================== %
+\usepackage{newunicodechar} % map specific Unicode chars to a font/macro
+
+\newif\ifcv@symok
+\IfFileExists{\cv@fontdir NotoSansSymbols/NotoSansSymbols-Regular.ttf}{\cv@symoktrue}{\cv@symokfalse}
+
+\ifcv@symok
+  % Load Noto Sans Symbols (Regular/Bold)
+  \newfontfamily\NotoSymbols[
+    Path=\cv@fontdir NotoSansSymbols/,
+    UprightFont = *-Regular.ttf,
+    BoldFont    = *-Bold.ttf
+  ]{NotoSansSymbols}
+
+  % Map specific symbols to Noto Sans Symbols (extend as needed)
+  \newunicodechar{→}{{\NotoSymbols →}}
+  % \newunicodechar{←}{{\NotoSymbols ←}}
+  % \newunicodechar{↑}{{\NotoSymbols ↑}}
+  % \newunicodechar{↓}{{\NotoSymbols ↓}}
+  % \newunicodechar{↔}{{\NotoSymbols ↔}}
+\else
+  % Graceful fallback: use math arrows if symbols font is absent
+  \ClassWarning{cv}{Noto Sans Symbols not found; mapping arrows to math symbols.}
+  \newunicodechar{→}{$\rightarrow$}
+  % \newunicodechar{←}{$\leftarrow$}
+  % \newunicodechar{↑}{$\uparrow$}
+  % \newunicodechar{↓}{$\downarrow$}
+  % \newunicodechar{↔}{$\leftrightarrow$}
+\fi
+
+% ================================================== %
 % Colors
 % ================================================== %
 \definecolor{highlightblue}{RGB}{0, 112, 192}
