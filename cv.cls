@@ -148,9 +148,11 @@ By Jing Li
 
 % Group headline extra spacing (within workexperience)
 \newlength\cvgroupbefore
-\setlength{\cvgroupbefore}{0.40em}
+\setlength{\cvgroupbefore}{0.40em}     % normal space before a group
+\newlength\cvgroupbeforefirst
+\setlength{\cvgroupbeforefirst}{0.10em}% space before the very first group after header
 \newlength\cvgroupafter
-\setlength{\cvgroupafter}{0.25em}
+\setlength{\cvgroupafter}{0.25em}      % space after a group headline
 
 % Block-to-block spacing for box-style macros (awards, talks, projects, ...)
 \newlength\cvblocksep
@@ -158,9 +160,9 @@ By Jing Li
 
 % Dedicated spacing around the workexperience header (tabularx)
 \newlength\cvworkheadbefore   % vertical space before the company/title header
-\setlength{\cvworkheadbefore}{0.8em}
+\setlength{\cvworkheadbefore}{0.5em}
 \newlength\cvworkheadafter    % vertical space after the header, before the bullets
-\setlength{\cvworkheadafter}{0.25em}
+\setlength{\cvworkheadafter}{0.5em}
 
 % ================================================== %
 % Title
@@ -231,17 +233,27 @@ By Jing Li
 % \end{workexperience}
 % ################################################## %
 % ===== workexperience: inner list uses the same left gutter =====
+\newif\ifcv@we@fresh
+
 \newenvironment{workexperience}[5]
 {
-  \par\addvspace{\cvworkheadbefore}
+  % top spacing before the header block
+  \vspace{\cvworkheadbefore}
+
   \begin{tabularx}{\textwidth}{l>{\raggedleft\arraybackslash}X}
     \textbf{#1} & \multirow{2}{*}{\includegraphics[height=#5]{#4}} \\
     \textcolor{highlightblue}{\textbf{#2}}, #3 & \\
   \end{tabularx}
+
+  % tighter space after the header block
   \vspace{\cvworkheadafter}
 
+  % measure bullet width to align bullets with \textindent
   \settowidth{\@tempdima}{\textbullet}%
   \addtolength{\@tempdima}{0.4em}% labelsep
+
+  % we are fresh at the start: the first group after header will use a smaller top spacing
+  \global\cv@we@freshtrue
 
   \begin{itemize}[
     leftmargin=\dimexpr\textindent+\@tempdima\relax,
@@ -256,14 +268,24 @@ By Jing Li
 }
 
 % Group headline inside workexperience: bold + accent color with extra spacing
+% If it's the first thing after the header, use smaller "before".
 \newcommand{\workexperiencegroup}[1]{%
-  \addvspace{\cvgroupbefore}%
+  \ifcv@we@fresh
+    \addvspace{\cvgroupbeforefirst}%
+  \else
+    \addvspace{\cvgroupbefore}%
+  \fi
   \item[]%
   {\textcolor{highlightpurple}{\textbf{#1}}}%
   \addvspace{\cvgroupafter}%
+  \global\cv@we@freshfalse
 }
 
-\newcommand{\workexperienceitem}[1]{\item #1}
+% Any normal item also clears the "fresh" flag
+\newcommand{\workexperienceitem}[1]{%
+  \global\cv@we@freshfalse
+  \item #1
+}
 
 % ################################################## %
 % Education background block
