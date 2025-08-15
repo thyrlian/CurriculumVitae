@@ -156,6 +156,12 @@ By Jing Li
 \newlength\cvblocksep
 \setlength{\cvblocksep}{0.40em}
 
+% Dedicated spacing around the workexperience header (tabularx)
+\newlength\cvworkheadbefore   % vertical space before the company/title header
+\setlength{\cvworkheadbefore}{0.8em}
+\newlength\cvworkheadafter    % vertical space after the header, before the bullets
+\setlength{\cvworkheadafter}{0.25em}
+
 % ================================================== %
 % Title
 % ================================================== %
@@ -227,10 +233,12 @@ By Jing Li
 % ===== workexperience: inner list uses the same left gutter =====
 \newenvironment{workexperience}[5]
 {
+  \par\addvspace{\cvworkheadbefore}
   \begin{tabularx}{\textwidth}{l>{\raggedleft\arraybackslash}X}
     \textbf{#1} & \multirow{2}{*}{\includegraphics[height=#5]{#4}} \\
     \textcolor{highlightblue}{\textbf{#2}}, #3 & \\
   \end{tabularx}
+  \vspace{\cvworkheadafter}
 
   \settowidth{\@tempdima}{\textbullet}%
   \addtolength{\@tempdima}{0.4em}% labelsep
@@ -244,7 +252,7 @@ By Jing Li
 }
 {
   \end{itemize}
-  \vspace{8pt}
+  \par\addvspace{\cvblocksep}
 }
 
 % Group headline inside workexperience: bold + accent color with extra spacing
@@ -267,10 +275,14 @@ By Jing Li
 % ---------- Usage example ----------
 % \educationbackground{Massachusetts Institute of Technology}{MS}{Computer Science}{Sep 19xx - Jul 19xx}
 % ################################################## %
-\def\educationbackground#1#2#3#4{\begin{tabularx}{\textwidth}{ll>{\raggedleft\arraybackslash}X}
-  \multirow{2}{*}{\faUniversity} & \textbf{#1} & \multirow{2}{*}{#4} \\
-  & {#2}, {#3} &
-\end{tabularx}}
+\def\educationbackground#1#2#3#4{%
+  \par\addvspace{\cvblocksep}
+  \begin{tabularx}{\textwidth}{ll>{\raggedleft\arraybackslash}X}
+    \multirow{2}{*}{\faUniversity} & \textbf{#1} & \multirow{2}{*}{#4} \\
+    & {#2}, {#3} &
+  \end{tabularx}%
+  \par\vspace{\cvblocksep}
+}
 
 \def\educationitem#1{%
   \hspace*{\textindent}\faGraduationCap\space\space\space\space#1%
