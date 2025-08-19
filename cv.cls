@@ -176,7 +176,7 @@ By Jing Li
 
 % Work-experience bullet line spacing
 \newlength\cvworksep
-\setlength{\cvworksep}{0.35em}
+\setlength{\cvworksep}{0.6em}
 
 % Group headline extra spacing (within workexperience)
 \newlength\cvgroupbefore
