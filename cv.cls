@@ -246,6 +246,28 @@ By Jing Li
 }
 
 % ################################################## %
+% Summary (optional)
+% ---------- Usage example ----------
+% \begin{summary}
+%   First paragraph of the summary.
+%
+%   Second paragraph (optional).
+% \end{summary}
+% ################################################## %
+\newenvironment{summary}
+  {%
+    \section*{Summary}%
+    \begingroup
+    \setlength{\parskip}{0.6em}%
+    \linespread{1.12}\selectfont%
+    \noindent\ignorespaces
+  }
+  {%
+    \par
+    \endgroup
+  }
+
+% ################################################## %
 % Work experience list
 % ---------- Arguments reference ----------
 % #1 - company name
